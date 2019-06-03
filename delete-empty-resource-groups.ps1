@@ -2,7 +2,7 @@
 # PS C:\Users\ramon\Desktop> & '.\delete-empty-resource-groups.ps1'
 
 # Log on to your Azure account
-Login-AzAccount
+Connect-AzAccount
 
 # Get list of Azure subscriptions
 $Subs = (get-AzSubscription).ID
