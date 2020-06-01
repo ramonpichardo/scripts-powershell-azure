@@ -1,10 +1,8 @@
 Set-ExecutionPolicy -Scope CurrentUser Bypass -Confirm:$false
 
-$credential   = Get-Credential -Message "Log on to Azure with your username (e-mail address) and password"
-$subscription = "sub_dev"
-
 # Log on to Azure tenant with your credentials
-Connect-AzAccount -Credential $credential -Subscription $subscription
+$credential = Get-Credential -Message "Log on to Azure with your username (e-mail address) and password"
+Connect-AzAccount -Credential $credential
 
 # List Azure VMs, sorted alphabetically by VM name
 Get-AzVM -status | Sort-Object -Property Name | Select-Object Name,ResourceGroupName,
