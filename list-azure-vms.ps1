@@ -21,3 +21,7 @@ Get-AzVM -status | Sort-Object -Property Name | Select-Object Name,ResourceGroup
 # Get count of Azure VMs
 $n = Get-AzVM | Measure-Object
 Write-Host "Total number of VMs in subscription '$($subscription)' is $($n.Count)." -ForegroundColor red -BackgroundColor white
+
+# Get count of running VMs in subscription
+$n = Get-AzVM -status | Sort-Object -Property Name | Where-Object -FilterScript { $_.PowerState -eq "VM running" } | Select-Object Name,ResourceGroupName, @{ label = "Status"; Expression = { $_.PowerState } } | Measure-Object;
+Write-Host "Total number of running VMs in subscription '$($subscription)' is $($n.Count)." -ForegroundColor red -BackgroundColor white
