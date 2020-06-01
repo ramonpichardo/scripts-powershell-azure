@@ -20,4 +20,4 @@ Get-AzVM -status | Sort-Object -Property Name | Select-Object Name,ResourceGroup
 
 # Get count of Azure VMs
 $n = Get-AzVM | Measure-Object
-Write-Output "Total number of VMs in subscription '$($subscription)' is $($n.Count)."
+Write-Host "Total number of VMs in subscription '$($subscription)' is $($n.Count)."
