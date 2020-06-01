@@ -25,3 +25,7 @@ Write-Host "Total number of VMs in subscription '$($subscription)' is $($n.Count
 # Get count of running VMs in subscription
 $n = Get-AzVM -status | Sort-Object -Property Name | Where-Object -FilterScript { $_.PowerState -eq "VM running" } | Select-Object Name,ResourceGroupName, @{ label = "Status"; Expression = { $_.PowerState } } | Measure-Object;
 Write-Host "Total number of running VMs in subscription '$($subscription)' is $($n.Count)." -ForegroundColor red -BackgroundColor white
+
+# Get count of stopped deallocated VMs in subscription
+$n = Get-AzVM -status | Sort-Object -Property Name | Where-Object -FilterScript { $_.PowerState -eq "VM deallocated" } | Select-Object Name,ResourceGroupName, @{ label = "Status"; Expression = { $_.PowerState } } | Measure-Object;
+Write-Host "Total number of stopped deallocated VMs in subscription '$($subscription)' is $($n.Count)." -ForegroundColor red -BackgroundColor white
