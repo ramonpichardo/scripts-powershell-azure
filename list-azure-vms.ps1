@@ -4,6 +4,9 @@ Set-ExecutionPolicy -Scope CurrentUser Bypass -Confirm:$false
 $credential = Get-Credential -Message "Log on to Azure with your username (e-mail address) and password"
 Connect-AzAccount -Credential $credential
 
+# List all Azure subscriptions in the current tenant
+Get-AzSubscription
+
 # List Azure VMs, sorted alphabetically by VM name
 Get-AzVM -status | Sort-Object -Property Name | Select-Object Name,ResourceGroupName,
   @{Name="VmSize"; Expression={$_.HardwareProfile.VmSize}},
