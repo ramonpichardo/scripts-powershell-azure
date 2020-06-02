@@ -15,7 +15,8 @@ Set-AzContext $context
 # List Azure VMs, sorted alphabetically by VM name
 Get-AzVM -status | Sort-Object -Property Name | Select-Object Name,ResourceGroupName,
   @{Name="VmSize"; Expression={$_.HardwareProfile.VmSize}},
-  @{Name="OsType"; Expression={$_.StorageProfile.OSDisk.OsType}} |
+  @{Name="OsType"; Expression={$_.StorageProfile.OSDisk.OsType}},
+  @{Label="Status"; Expression={$_.PowerState}} |
     Export-Csv -Path .\Azure_VMs.csv -NoTypeInformation
 
 # Get count of Azure VMs
