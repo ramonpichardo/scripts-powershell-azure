@@ -13,11 +13,11 @@ If ((New-Object Security.Principal.WindowsPrincipal $IsAdmin).IsInRole([Security
 # Set the execution policy to RemoteSigned to run scripts and load configuration files with PowerCLI.
 Set-ExecutionPolicy RemoteSigned -Confirm:$false
 
-# As a default, PSGallery is an untrusted repository. Use Set-PSRepository to make PSGallery trusted.
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
 # PowerShellGet requires NuGet provider version '2.8.5.201' or newer to interact with NuGet-based repositories.
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+# As a default, PSGallery is an untrusted repository. Use Set-PSRepository to make PSGallery trusted.
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 # Install modules at a global scope.
 Install-Module -Name Az -AllowClobber
